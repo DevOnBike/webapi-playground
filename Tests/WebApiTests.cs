@@ -7,7 +7,7 @@ namespace Tests
     public class WebApiTests : IClassFixture<TestWebApplicationFactory>
     {
         [Fact]
-        public async Task WeatherAsync()
+        public async Task WeatherGetTest()
         {
             // arrange
 

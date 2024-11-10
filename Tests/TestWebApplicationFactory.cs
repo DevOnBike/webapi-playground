@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data.Common;
 using webapi;
@@ -19,9 +20,14 @@ namespace Tests
             {
                 var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(IWeatherService));
                 services.Remove(descriptor);
+                
+            });
 
+            builder.ConfigureTestServices(services =>
+            {
                 services.AddSingleton<IWeatherService, WeatherService>();
 
+                // add mocks, etc ...
             });
 
         }
