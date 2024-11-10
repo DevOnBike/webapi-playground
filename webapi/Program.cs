@@ -1,4 +1,6 @@
 
+using webapi.Services;
+
 namespace webapi
 {
     public class Program
@@ -13,6 +15,8 @@ namespace webapi
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<IWeatherService, WeatherService>();
 
             var app = builder.Build();
 
