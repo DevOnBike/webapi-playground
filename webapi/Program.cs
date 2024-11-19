@@ -5,7 +5,7 @@ namespace webapi
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -21,20 +21,17 @@ namespace webapi
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
 
             app.MapControllers();
 
-            app.Run();
+            return app.RunAsync();
         }
     }
 }

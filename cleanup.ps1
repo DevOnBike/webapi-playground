@@ -1,3 +1,4 @@
+# wyczyszenie katalogów bin, obj w solucji (opcjonalnie utworzenie paczki zip z solucji)
 Set-ExecutionPolicy Unrestricted -Force
 cls
 
