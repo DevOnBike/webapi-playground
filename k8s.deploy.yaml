@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kubernetes-devonbike-webapi
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: kubernetes-devonbike-webapi
+  name: kubernetes-devonbike-webapi
+  namespace: kubernetes-devonbike-webapi
+spec:
+  ports:
+    - port: 8500
+      targetPort: 8000
+  selector:
+    k8s-app: kubernetes-devonbike-webapi
+
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    k8s-app: kubernetes-devonbike-webapi
+  name: kubernetes-devonbike-webapi
+  namespace: kubernetes-devonbike-webapi
+spec:
+  replicas: 2
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: kubernetes-devonbike-webapi
+  template:
+    metadata:
+      labels:
+        k8s-app: kubernetes-devonbike-webapi
+    spec:
+      containers:
+        - name: kubernetes-devonbike-webapi
+          image: webapi:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8500
+              protocol: TCP
