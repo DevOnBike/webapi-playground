@@ -1,8 +1,7 @@
-
-using webapi.Services;
 using Messaging;
+using webapi2.Services;
 
-namespace webapi
+namespace webapi2
 {
     public class Program
     {
