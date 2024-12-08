@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
@@ -17,6 +16,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Messaging\Messaging.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="localhost.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

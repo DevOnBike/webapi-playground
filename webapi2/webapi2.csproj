@@ -19,4 +19,10 @@
     <ProjectReference Include="..\Messaging\Messaging.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="localhost.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

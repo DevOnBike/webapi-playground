@@ -8,7 +8,6 @@ namespace Messaging.Actors
     public class SubscriberActor : ReceiveActor
     {
         private readonly ILoggingAdapter _log = Context.GetLogger();
-        private readonly Guid _id = Guid.NewGuid();
 
         public SubscriberActor()
         {

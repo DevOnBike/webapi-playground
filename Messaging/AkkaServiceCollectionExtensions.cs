@@ -20,7 +20,7 @@ namespace Messaging
 
             sc.AddScoped<IMessageBus, MessageBus>();
 
-            sc.AddAkka("cluster", (akkaBuilder, ioc) =>
+            sc.AddAkka("devonbike-cluster", (akkaBuilder, ioc) =>
             {
                 var iConfiguration = ioc.GetRequiredService<IConfiguration>();
                 var akkaConfig = iConfiguration.GetRequiredSection(SectionName);
@@ -40,13 +40,14 @@ namespace Messaging
                     }).AddStartup((system, registry) =>
                     {
                         var publisher = registry.Get<PublisherActor>();
-
+                        /*
                         system.Scheduler.ScheduleTellRepeatedly(
                             TimeSpan.FromSeconds(5),
                             TimeSpan.FromSeconds(30),
                             publisher,
                             "Hello Akka",
                             ActorRefs.NoSender); // todo: remove one day ;)
+                        */
                     });
             });
         }

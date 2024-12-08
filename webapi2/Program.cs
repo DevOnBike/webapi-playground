@@ -3,7 +3,7 @@ using webapi2.Services;
 
 namespace webapi2
 {
-    public class Program
+    public static class Program
     {
         public static Task Main(string[] args)
         {
