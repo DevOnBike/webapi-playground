@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data.Common;
 using webapi;
-using webapi.Services;
 
 namespace Tests
 {
@@ -18,14 +17,14 @@ namespace Tests
         {
             builder.ConfigureServices(services =>
             {
-                var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(IWeatherService));
-                services.Remove(descriptor);
+                //var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(IWeatherService));
+                //services.Remove(descriptor);
                 
             });
 
             builder.ConfigureTestServices(services =>
             {
-                services.AddSingleton<IWeatherService, WeatherService>();
+                //services.AddSingleton<IWeatherService, WeatherService>();
 
                 // add mocks, etc ...
             });

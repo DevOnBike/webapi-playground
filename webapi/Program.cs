@@ -1,5 +1,4 @@
 
-using webapi.Services;
 using Messaging;
 
 namespace webapi
@@ -17,7 +16,6 @@ namespace webapi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddScoped<IWeatherService, WeatherService>();
 
             builder.Services.AddAkkaNet(builder.Configuration);
 

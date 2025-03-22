@@ -1,8 +1,11 @@
 ﻿using Akka.Actor;
 using Akka.Hosting;
 using Messaging.Actors;
+using Messaging.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Petabridge.Cmd.Host;
 
 namespace Messaging
 {
@@ -20,10 +23,12 @@ namespace Messaging
 
             sc.AddScoped<IMessageBus, MessageBus>();
 
-            sc.AddAkka("devonbike-cluster", (akkaBuilder, ioc) =>
+            sc.AddAkka("devonbike-cluster", (akkaBuilder, di) =>
             {
-                var iConfiguration = ioc.GetRequiredService<IConfiguration>();
+                var iConfiguration = di.GetRequiredService<IConfiguration>();
                 var akkaConfig = iConfiguration.GetRequiredSection(SectionName);
+                var akkaOptions = di.GetRequiredService<IOptions<AkkaOptions>>();
+                var cmdEnabled = akkaOptions.Value.CmdEnabled;
 
                 akkaBuilder
                     .AddHocon(akkaConfig, HoconAddMode.Replace)
@@ -39,6 +44,11 @@ namespace Messaging
 
                     }).AddStartup((system, registry) =>
                     {
+                        if (cmdEnabled)
+                        {
+                            PetabridgeCmd.Get(system).Start();
+                        }
+
                         var publisher = registry.Get<PublisherActor>();
                         /*
                         system.Scheduler.ScheduleTellRepeatedly(

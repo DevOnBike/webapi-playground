@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.1.0" />
-    <PackageReference Include="Akka" Version="1.5.32" />
-    <PackageReference Include="Akka.Cluster" Version="1.5.32" />
-    <PackageReference Include="Akka.Cluster.Tools" Version="1.5.32" />
-    <PackageReference Include="Akka.DependencyInjection" Version="1.5.32" />
-    <PackageReference Include="Akka.Hosting" Version="1.5.32" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.0.0" />
+    <PackageReference Include="Akka" Version="1.5.39" />
+    <PackageReference Include="Akka.Cluster" Version="1.5.39" />
+    <PackageReference Include="Akka.Cluster.Tools" Version="1.5.39" />
+    <PackageReference Include="Akka.DependencyInjection" Version="1.5.39" />
+    <PackageReference Include="Akka.Hosting" Version="1.5.39" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +23,10 @@
     <None Update="localhost.pfx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>
