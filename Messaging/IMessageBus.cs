@@ -4,6 +4,5 @@
     {
         void Publish<T>(T message);
     }
-
 }
 

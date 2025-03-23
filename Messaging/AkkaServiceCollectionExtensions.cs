@@ -22,6 +22,7 @@ namespace Messaging
             }
 
             sc.AddScoped<IMessageBus, MessageBus>();
+            sc.AddScoped<IDistributedCache, DistributedCache>();
 
             sc.AddAkka("devonbike-cluster", (akkaBuilder, di) =>
             {
