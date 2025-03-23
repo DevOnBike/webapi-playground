@@ -34,8 +34,7 @@ namespace Messaging
             var keySet = new ORSetKey<string>(key);
             var result = await dd.GetAsync(keySet, readConsistency, token);
 
-            return string.Empty;
-
+            return result?.Elements.FirstOrDefault();
         }
 
         public Task RemoveAsync(string key, CancellationToken token)
