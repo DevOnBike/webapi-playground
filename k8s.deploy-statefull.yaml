@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kubernetes-devonbike-webapi-statefull
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    k8s-app: kubernetes-devonbike-webapi-statefull
+  name: kubernetes-devonbike-webapi-statefull
+  namespace: kubernetes-devonbike-webapi-statefull
+spec:
+  selector:
+    k8s-app: kubernetes-devonbike-webapi-statefull
+  clusterIP: None
+  ports:
+    - port: 8500
+      targetPort: 8000
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    k8s-app: kubernetes-devonbike-webapi-statefull
+  name: kubernetes-devonbike-webapi-statefull
+  namespace: kubernetes-devonbike-webapi-statefull
+spec:
+  serviceName: kubernetes-devonbike-webapi-statefull
+  replicas: 3
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+  selector:
+    matchLabels:
+      k8s-app: kubernetes-devonbike-webapi-statefull
+  template:
+    metadata:
+      labels:
+        k8s-app: kubernetes-devonbike-webapi-statefull
+    spec:
+      containers:
+        - name: kubernetes-devonbike-webapi
+          image: webapi:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8500
+              protocol: TCP
