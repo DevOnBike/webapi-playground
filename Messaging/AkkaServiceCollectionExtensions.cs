@@ -1,5 +1,6 @@
-﻿using Akka.Actor;
+﻿using Akka.DistributedData;
 using Akka.Hosting;
+using Akka.Hosting.Configuration;
 using Messaging.Actors;
 using Messaging.Configuration;
 using Microsoft.Extensions.Configuration;
@@ -30,9 +31,10 @@ namespace Messaging
                 var akkaConfig = iConfiguration.GetRequiredSection(SectionName);
                 var akkaOptions = di.GetRequiredService<IOptions<AkkaOptions>>();
                 var cmdEnabled = akkaOptions.Value.CmdEnabled;
+                var hocon = akkaConfig.ToHocon().WithFallback(DistributedData.DefaultConfig());
 
                 akkaBuilder
-                    .AddHocon(akkaConfig, HoconAddMode.Replace)
+                    .AddHocon(hocon, HoconAddMode.Replace)
                     .WithActors((system, registry) =>
                     {
                         var publisherActor = system.ActorOf(PublisherActor.Prop(), "publisher");
@@ -42,8 +44,8 @@ namespace Messaging
 
                         registry.TryRegister<PublisherActor>(publisherActor, true);
                         registry.TryRegister<SubscriberActor>(subscriber, true);
-
-                    }).AddStartup((system, registry) =>
+                    })
+                    .AddStartup((system, registry) =>
                     {
                         if (cmdEnabled)
                         {
