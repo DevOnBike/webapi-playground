@@ -1,4 +1,5 @@
-﻿using Akka.DistributedData;
+﻿using Akka.Cluster.Hosting;
+using Akka.DistributedData;
 using Akka.Hosting;
 using Akka.Hosting.Configuration;
 using Messaging.Actors;
@@ -35,6 +36,12 @@ namespace Messaging
 
                 akkaBuilder
                     .AddHocon(hocon, HoconAddMode.Replace)
+                    .WithDistributedData(options => options.Name = "dd-replicator")
+                    .WithActors((system, registry) =>
+                    {
+                        // force the replicator to start IMMEDIATELY
+                        var replicator = system.DistributedData();
+                    })
                     .WithActors((system, registry) =>
                     {
                         var publisherActor = system.ActorOf(PublisherActor.Prop(), "publisher");
