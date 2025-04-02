@@ -6,12 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.0.0" />
-    <PackageReference Include="Akka" Version="1.5.39" />
-    <PackageReference Include="Akka.Cluster" Version="1.5.39" />
-    <PackageReference Include="Akka.Cluster.Tools" Version="1.5.39" />
-    <PackageReference Include="Akka.DependencyInjection" Version="1.5.39" />
-    <PackageReference Include="Akka.Hosting" Version="1.5.39" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.0" />
+    <PackageReference Include="Akka" Version="1.5.40" />
+    <PackageReference Include="Akka.Cluster" Version="1.5.40" />
+    <PackageReference Include="Akka.Cluster.Tools" Version="1.5.40" />
+    <PackageReference Include="Akka.DependencyInjection" Version="1.5.40" />
+    <PackageReference Include="Akka.Hosting" Version="1.5.40" />
   </ItemGroup>
 
   <ItemGroup>
